@@ -1,0 +1,8 @@
+packages:
+  - "packages/*"
+  - "apps/*"
+onlyBuiltDependencies:
+  - bufferutil
+  - utf-8-validate
+  - sharp
+  - unrs-resolver

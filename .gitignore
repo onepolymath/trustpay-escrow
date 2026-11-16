@@ -1,0 +1,23 @@
+# Rust / Anchor
+target/
+.anchor/
+test-ledger/
+**/*.rs.bk
+
+# Node
+node_modules/
+dist/
+coverage/
+.next/
+*.tsbuildinfo
+next-env.d.ts
+
+# Env & keys: never commit keypairs
+.env
+.env.*
+!.env.example
+*-keypair.json
+keys/
+
+.vercel
+.DS_Store
