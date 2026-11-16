@@ -1,0 +1,31 @@
+name: Bug report
+description: Something in the program, SDK or web app behaves incorrectly
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Include the order address and transaction signature (devnet) if relevant. Never paste private keys.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open /sell\n2. ..."
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [Anchor program, TypeScript SDK, Web app, Blinks / Solana Pay, Scripts / CI]
+  - type: input
+    id: version
+    attributes:
+      label: Commit / version
