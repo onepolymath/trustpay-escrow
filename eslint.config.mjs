@@ -11,6 +11,8 @@ export default tseslint.config(
       "**/.next/**",
       "**/node_modules/**",
       "**/next-env.d.ts",
+      "target/**",
+      "packages/sdk/src/idl/**",
     ],
   },
   js.configs.recommended,
