@@ -199,7 +199,13 @@ export function WalletButton() {
             ) : (
               <span className="size-2 rounded-full bg-emerald-500" />
             )}
-            <span className="font-mono text-[13px]">{shortenAddress(publicKey.toBase58())}</span>
+            <span
+              className={
+                isDemo ? "hidden font-mono text-[13px] sm:inline" : "font-mono text-[13px]"
+              }
+            >
+              {shortenAddress(publicKey.toBase58())}
+            </span>
             <ChevronDown className="text-muted-foreground" />
           </Button>
         </DropdownMenuTrigger>

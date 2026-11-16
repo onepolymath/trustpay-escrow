@@ -18,7 +18,7 @@ function useOrigin(): string {
 function CopyRow({ label, value }: { label: string; value: string }) {
   const [copied, setCopied] = useState(false);
   return (
-    <div className="grid gap-1.5">
+    <div className="grid min-w-0 grid-cols-1 gap-1.5">
       <span className="text-xs font-medium text-muted-foreground">{label}</span>
       <div className="flex items-center gap-2 rounded-lg border border-border bg-muted/40 py-1 pr-1 pl-3">
         <span className="min-w-0 flex-1 truncate font-mono text-xs">{value}</span>
@@ -49,12 +49,12 @@ export function SharePanel({ order }: { order: OrderAccount }) {
   const message = `Hi! Here's your secure TrustPay link for "${order.title}" (${price}). Your payment stays in escrow until you confirm delivery: ${link}`;
 
   return (
-    <div className="grid gap-5 sm:grid-cols-[auto_1fr]">
+    <div className="grid min-w-0 grid-cols-1 gap-5 sm:grid-cols-[auto_minmax(0,1fr)]">
       <div className="mx-auto rounded-xl border border-border bg-white p-3">
         <QRCodeSVG value={solanaPayUrl(action)} size={148} level="M" marginSize={0} />
         <p className="mt-2 text-center text-[11px] text-neutral-500">Scan with a Solana wallet</p>
       </div>
-      <div className="grid content-start gap-3">
+      <div className="grid min-w-0 grid-cols-1 content-start gap-3">
         <CopyRow label="Order link" value={link} />
         <CopyRow label="Blink (pay inside X & Discord)" value={blinkUrl(action)} />
         <div className="flex flex-wrap gap-2 pt-1">
