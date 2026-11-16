@@ -15,3 +15,7 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    ignore:
+      # Anchor majors change the IDL/account format; upgrade deliberately, not via a bot.
+      - dependency-name: "anchor-*"
+        update-types: ["version-update:semver-major"]
