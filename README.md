@@ -12,9 +12,11 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[**Live demo**](https://trustpay-escrow.vercel.app) · [Threat model](docs/THREAT_MODEL.md) · [Demo script](docs/DEMO_SCRIPT.md) · [Submission](docs/SUBMISSION.md)
+[**Live demo**](https://trustpay-sol.vercel.app) · [Threat model](docs/THREAT_MODEL.md) · [Demo script](docs/DEMO_SCRIPT.md) · [Submission](docs/SUBMISSION.md)
 
 Built for the [Dev3pack Global Hackathon](https://hack.dev3pack.xyz) (Solana, Nov 2026).
+
+> **Devnet status:** program ID `CvbRGAvMeDB3Up6fYa4xBX2GVdYdRKCpq4L5FLaThRBg`. Until it is deployed to devnet, the live site shows a banner saying so; the full flow is verified end-to-end on a local validator (`pnpm e2e`).
 
 <img src="docs/img/home-light.png" alt="TrustPay landing page" width="900" />
 

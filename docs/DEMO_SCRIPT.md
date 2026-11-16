@@ -1,6 +1,6 @@
 # Demo video script (under 3:00)
 
-Record at 1080p. Tabs: <https://trustpay-escrow.vercel.app> (light theme), the GitHub repo, and Solana Explorer. The demo uses the built-in **demo wallets** (no extension needed), so you can switch between buyer, vendor and arbiter from the wallet menu. The timings leave about 15 s of slack.
+Record at 1080p. Tabs: <https://trustpay-sol.vercel.app> (light theme), the GitHub repo, and Solana Explorer. The demo uses the built-in **demo wallets** (no extension needed), so you can switch between buyer, vendor and arbiter from the wallet menu. The timings leave about 15 s of slack.
 
 **Before recording**
 
