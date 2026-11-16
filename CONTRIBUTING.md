@@ -18,11 +18,10 @@ pnpm lint            # ESLint (typescript-eslint strictTypeChecked)
 pnpm format:check    # Prettier
 pnpm typecheck       # tsc --noEmit across the workspace
 pnpm test            # SDK unit tests + web tests (no chain needed)
-pnpm test:coverage   # same, with the coverage gate (90% lines / 85% branches)
 
 pnpm build:program   # cargo build-sbf + IDL -> packages/sdk/src/idl
-cargo test -p trustpay  # pure Rust unit tests (state machine, payout maths)
-pnpm test:program    # LiteSVM integration tests against the compiled program
+pnpm test:program    # Rust unit tests + LiteSVM integration tests against the compiled program
+pnpm test:coverage   # SDK unit + LiteSVM together, with the coverage gate (90% lines / 85% branches)
 pnpm e2e             # local validator + real program + production web build + headless browser
 
 pnpm dev             # web app on http://localhost:3000

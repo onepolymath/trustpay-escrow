@@ -5,8 +5,8 @@
 **Scam-proof payments for Instagram, WhatsApp and X vendors: the buyer's money sits in a Solana escrow until the parcel arrives, and every vendor carries an on-chain reputation nobody can fake.**
 
 [![CI](https://github.com/onepolymath/trustpay-escrow/actions/workflows/ci.yml/badge.svg)](https://github.com/onepolymath/trustpay-escrow/actions/workflows/ci.yml)
-![tests](https://img.shields.io/badge/tests-160%20passing-brightgreen)
-![coverage](https://img.shields.io/badge/SDK%20coverage-98%25-brightgreen)
+![tests](https://img.shields.io/badge/tests-123%20passing-brightgreen)
+![coverage](https://img.shields.io/badge/SDK%20coverage-98.6%25-brightgreen)
 ![Anchor](https://img.shields.io/badge/Anchor-0.32-512da8)
 ![Solana](https://img.shields.io/badge/Solana-devnet-14f195)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
@@ -135,7 +135,7 @@ stateDiagram-v2
 ```
 programs/trustpay/      Anchor program (13 instructions, 17 errors, events, Rust unit tests)
 packages/sdk/           @trustpay/sdk: typed client, PDAs, decoding, trust score, lifecycle, links
-  test/unit/            pure unit tests (vitest)
+  test/unit/            pure unit tests (vitest, 66)
   test/integration/     LiteSVM tests that run the compiled program (37 scenarios)
 apps/web/               Next.js app: vendor console, buyer view, arbiter queue, reputation, Blinks
 e2e/                    Playwright flow through the real UI (drives scripts/e2e-local.sh)
@@ -180,11 +180,12 @@ The script deploys the program, runs `pnpm bootstrap` (initialises the config, c
 | ------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Rust unit           | `cargo test -p trustpay` | payout split maths, window bounds, the dispute/auto-release complement (10 tests)                                                                                                                                                  |
 | Program integration | `pnpm test:program`      | **37 LiteSVM scenarios against the compiled `.so`**: config hijack, every lifecycle path, deadline edges, the timeout race, arbiter conflicts and redirection attempts, double-settle, stray tokens, reserved buyers, self-dealing |
-| SDK unit            | `pnpm test:coverage`     | trust score, lifecycle/actions, PDAs, decoding, formatting, links, error mapping. Coverage gate 90% lines / 85% branches (currently ~98%)                                                                                          |
+| SDK unit            | `pnpm test`              | 66 tests: trust score, lifecycle/actions, PDAs, decoding, formatting, links, error mapping                                                                                                                                         |
+| SDK coverage        | `pnpm test:coverage`     | unit + LiteSVM suites together, gated at 90% lines / 85% branches (currently 98.6% lines). Needs the built program.                                                                                                                |
 | Web                 | `pnpm --filter web test` | Blink metadata, route param validation                                                                                                                                                                                             |
 | E2E                 | `pnpm e2e`               | the full flow through the production UI on a real validator                                                                                                                                                                        |
 
-CI runs format, lint, typecheck, unit tests with coverage and the web build on every push, plus a second job that builds the program with the Solana toolchain and runs the Rust and LiteSVM suites.
+CI runs format, typecheck, lint, unit tests and the web build on every push, plus a second job that builds the program with the Solana toolchain and runs the Rust suite and the LiteSVM suite with the coverage gate.
 
 ## Real vs mocked
 

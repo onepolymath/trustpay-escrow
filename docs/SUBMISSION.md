@@ -42,11 +42,11 @@ Across Nigeria and the Global South, people buy from Instagram and WhatsApp vend
 
 **Quality.**
 
-- 160 automated tests:
+- 123 automated tests:
   - 37 LiteSVM scenarios run against the compiled program, including attack cases such as arbiter redirection, conflict of interest, double-settle, the deadline race and stray tokens;
-  - 103 SDK unit tests at about 98% coverage;
-  - Rust unit tests;
-  - web tests;
+  - 66 SDK unit tests (98.6% SDK line coverage together with the LiteSVM suite);
+  - 10 Rust unit tests;
+  - 10 web tests;
   - a Playwright E2E that drives the production UI against a local validator.
 - Strict TypeScript, ESLint, Prettier and CI.
 - A threat model that maps every attack to a test.
