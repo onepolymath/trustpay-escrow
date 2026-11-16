@@ -3,6 +3,7 @@
 #
 # We call cargo-build-sbf directly (instead of `anchor build`) so we can pin a platform-tools
 # release whose Cargo understands edition-2024 crates in the dependency tree.
+# SKIP_IDL=1 builds only the .so (CI uses the committed IDL, so it doesn't need the Anchor CLI).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -15,6 +16,11 @@ cargo build-sbf \
   --arch "$ARCH" \
   --manifest-path programs/trustpay/Cargo.toml \
   --sbf-out-dir target/deploy
+
+if [[ "${SKIP_IDL:-0}" == "1" ]]; then
+  echo "Built target/deploy/trustpay.so (IDL left untouched: SKIP_IDL=1)."
+  exit 0
+fi
 
 mkdir -p target/idl target/types
 anchor idl build -p trustpay -o target/idl/trustpay.json -t target/types/trustpay.ts
