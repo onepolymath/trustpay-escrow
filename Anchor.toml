@@ -1,0 +1,20 @@
+[toolchain]
+anchor_version = "0.32.3"
+package_manager = "pnpm"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+trustpay = "CvbRGAvMeDB3Up6fYa4xBX2GVdYdRKCpq4L5FLaThRBg"
+
+[programs.devnet]
+trustpay = "CvbRGAvMeDB3Up6fYa4xBX2GVdYdRKCpq4L5FLaThRBg"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "pnpm --filter @trustpay/program-tests test"
