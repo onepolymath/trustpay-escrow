@@ -21,3 +21,4 @@ keys/
 
 .vercel
 .DS_Store
+coverage/

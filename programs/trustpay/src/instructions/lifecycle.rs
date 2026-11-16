@@ -39,7 +39,10 @@ pub struct FundOrder<'info> {
 pub fn fund_order(ctx: Context<FundOrder>) -> Result<()> {
     let buyer = ctx.accounts.buyer.key();
     let order = &mut ctx.accounts.order;
-    require!(order.status == OrderStatus::Created, TrustPayError::InvalidStatus);
+    require!(
+        order.status == OrderStatus::Created,
+        TrustPayError::InvalidStatus
+    );
     require_keys_neq!(buyer, order.vendor, TrustPayError::SelfDealing);
     if order.reserved_buyer {
         require_keys_eq!(buyer, order.buyer, TrustPayError::NotReservedBuyer);
@@ -63,7 +66,9 @@ pub fn fund_order(ctx: Context<FundOrder>) -> Result<()> {
     order.buyer = buyer;
     order.status = OrderStatus::Funded;
     order.funded_at = now;
-    order.ship_by = now.checked_add(order.ship_window_secs).ok_or(TrustPayError::MathOverflow)?;
+    order.ship_by = now
+        .checked_add(order.ship_window_secs)
+        .ok_or(TrustPayError::MathOverflow)?;
 
     emit!(OrderFunded {
         order: order.key(),
@@ -89,7 +94,10 @@ pub struct MarkShipped<'info> {
 pub fn mark_shipped(ctx: Context<MarkShipped>, tracking: String) -> Result<()> {
     check_text(&tracking, MAX_TRACKING_LEN, true)?;
     let order = &mut ctx.accounts.order;
-    require!(order.status == OrderStatus::Funded, TrustPayError::InvalidStatus);
+    require!(
+        order.status == OrderStatus::Funded,
+        TrustPayError::InvalidStatus
+    );
     let now = Clock::get()?.unix_timestamp;
     require!(now <= order.ship_by, TrustPayError::ShipDeadlinePassed);
 
@@ -141,7 +149,10 @@ pub fn open_dispute(ctx: Context<OpenDispute>, reason: String) -> Result<()> {
     order.dispute_reason = reason.clone();
 
     let profile = &mut ctx.accounts.vendor_profile;
-    profile.disputes_opened = profile.disputes_opened.checked_add(1).ok_or(TrustPayError::MathOverflow)?;
+    profile.disputes_opened = profile
+        .disputes_opened
+        .checked_add(1)
+        .ok_or(TrustPayError::MathOverflow)?;
     profile.last_activity_at = now;
 
     emit!(DisputeOpened {

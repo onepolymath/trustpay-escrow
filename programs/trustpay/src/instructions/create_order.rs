@@ -45,7 +45,10 @@ pub struct CreateOrder<'info> {
 
 pub fn create_order(ctx: Context<CreateOrder>, args: CreateOrderArgs) -> Result<()> {
     let profile = &mut ctx.accounts.vendor_profile;
-    require!(args.order_id == profile.orders_created, TrustPayError::UnexpectedOrderId);
+    require!(
+        args.order_id == profile.orders_created,
+        TrustPayError::UnexpectedOrderId
+    );
     require!(args.amount > 0, TrustPayError::InvalidAmount);
     check_text(&args.title, MAX_TITLE_LEN, false)?;
     let config = &mut ctx.accounts.config;
@@ -82,9 +85,15 @@ pub fn create_order(ctx: Context<CreateOrder>, args: CreateOrderArgs) -> Result<
         bump: ctx.bumps.order,
     });
 
-    profile.orders_created = profile.orders_created.checked_add(1).ok_or(TrustPayError::MathOverflow)?;
+    profile.orders_created = profile
+        .orders_created
+        .checked_add(1)
+        .ok_or(TrustPayError::MathOverflow)?;
     profile.last_activity_at = now;
-    config.order_count = config.order_count.checked_add(1).ok_or(TrustPayError::MathOverflow)?;
+    config.order_count = config
+        .order_count
+        .checked_add(1)
+        .ok_or(TrustPayError::MathOverflow)?;
 
     emit!(OrderCreated {
         order: ctx.accounts.order.key(),
@@ -111,7 +120,10 @@ pub struct CancelOrder<'info> {
 
 pub fn cancel_order(ctx: Context<CancelOrder>) -> Result<()> {
     let order = &mut ctx.accounts.order;
-    require!(order.status == OrderStatus::Created, TrustPayError::InvalidStatus);
+    require!(
+        order.status == OrderStatus::Created,
+        TrustPayError::InvalidStatus
+    );
     order.status = OrderStatus::Cancelled;
     order.settled_at = Clock::get()?.unix_timestamp;
     emit!(OrderCancelled { order: order.key() });

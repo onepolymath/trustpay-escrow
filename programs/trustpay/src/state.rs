@@ -157,12 +157,17 @@ pub fn split_payout(total: u64, buyer_bps: u16) -> Result<(u64, u64)> {
         .ok_or(TrustPayError::MathOverflow)?
         / BPS_DENOMINATOR as u128;
     let to_buyer = u64::try_from(to_buyer).map_err(|_| TrustPayError::MathOverflow)?;
-    let to_vendor = total.checked_sub(to_buyer).ok_or(TrustPayError::MathOverflow)?;
+    let to_vendor = total
+        .checked_sub(to_buyer)
+        .ok_or(TrustPayError::MathOverflow)?;
     Ok((to_buyer, to_vendor))
 }
 
 pub fn check_text(value: &str, max: usize, allow_empty: bool) -> Result<()> {
-    require!(allow_empty || !value.trim().is_empty(), TrustPayError::EmptyText);
+    require!(
+        allow_empty || !value.trim().is_empty(),
+        TrustPayError::EmptyText
+    );
     require!(value.len() <= max, TrustPayError::TextTooLong);
     Ok(())
 }

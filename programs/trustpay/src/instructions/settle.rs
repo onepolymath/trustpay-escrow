@@ -25,7 +25,12 @@ struct Payout<'a, 'info> {
 impl<'a, 'info> Payout<'a, 'info> {
     /// Pays out the whole vault balance (so stray tokens sent to the vault can never block
     /// closing it), split by `buyer_bps`, then closes the vault.
-    fn execute(self, buyer_bps: u16, outcome: OrderStatus, settled_by: Pubkey) -> Result<(u64, u64)> {
+    fn execute(
+        self,
+        buyer_bps: u16,
+        outcome: OrderStatus,
+        settled_by: Pubkey,
+    ) -> Result<(u64, u64)> {
         let total = self.vault.amount;
         let (to_buyer, to_vendor) = split_payout(total, buyer_bps)?;
 
@@ -369,7 +374,10 @@ pub struct ResolveDispute<'info> {
 
 pub fn resolve_dispute(ctx: Context<ResolveDispute>, buyer_bps: u16) -> Result<()> {
     let a = ctx.accounts;
-    require!(a.order.status == OrderStatus::Disputed, TrustPayError::InvalidStatus);
+    require!(
+        a.order.status == OrderStatus::Disputed,
+        TrustPayError::InvalidStatus
+    );
     require!(buyer_bps <= BPS_DENOMINATOR, TrustPayError::InvalidBps);
     let arbiter = a.arbiter.key();
     require!(
