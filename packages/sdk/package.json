@@ -29,9 +29,9 @@
   "devDependencies": {
     "@types/bn.js": "^5.2.0",
     "@types/node": "^26.6.6",
-    "@vitest/coverage-v8": "^5.1.0",
-    "litesvm": "0.8.0",
-    "vitest": "^5.1.0"
+    "@vitest/coverage-v8": "^5.1.1",
+    "litesvm": "1.6.2",
+    "vitest": "^5.1.1"
   },
   "files": [
     "dist",
