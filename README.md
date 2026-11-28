@@ -16,7 +16,7 @@
 
 Built for the [Dev3pack Global Hackathon](https://hack.dev3pack.xyz) (Solana, Nov 2026).
 
-> **Devnet status:** program ID `CvbRGAvMeDB3Up6fYa4xBX2GVdYdRKCpq4L5FLaThRBg`. Until it is deployed to devnet, the live site shows a banner saying so; the full flow is verified end-to-end on a local validator (`pnpm e2e`).
+> **Devnet status:** deployed. Program ID [`CvbRGAvMeDB3Up6fYa4xBX2GVdYdRKCpq4L5FLaThRBg`](https://explorer.solana.com/address/CvbRGAvMeDB3Up6fYa4xBX2GVdYdRKCpq4L5FLaThRBg?cluster=devnet) on Solana devnet, config initialised, live at https://trustpay-sol.vercel.app. The full flow is also verified end-to-end on a local validator (`pnpm e2e`).
 
 <img src="docs/img/home-light.png" alt="TrustPay landing page" width="900" />
 
