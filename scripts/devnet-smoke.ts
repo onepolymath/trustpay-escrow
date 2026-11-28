@@ -143,15 +143,7 @@ await send("confirm delivery", [buyer], [await client.confirmDelivery(funded)]);
 const order = await client.fetchOrder(orderAddress);
 const rep = await client.fetchVendor(vendor.publicKey);
 console.log("order status     ", JSON.stringify(order?.status));
-console.log(
-  "vendor profile   ",
-  JSON.stringify(rep, (_k, v) =>
-    typeof v === "bigint"
-      ? v.toString()
-      : v?.toBase58
-        ? v.toBase58()
-        : v?.toString && v.constructor?.name === "BN"
-          ? v.toString()
-          : v,
-  ),
-);
+if (rep)
+  console.log(
+    `vendor profile    ${rep.handle}: ${rep.completed} completed, volume ${rep.volumeSettled.toString()} base units`,
+  );
